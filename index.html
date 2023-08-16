@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 1031px;
+            height: 501px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/NouvelleCaldonieregroupe_0.js"></script>
+        <script src="data/areg2021_1.js"></script>
+        <script src="data/Delegations_2.js"></script>
+        <script src="data/Autrespropositionsdaccslalimentation_3.js"></script>
+        <script src="data/temp1_4.js"></script>
+        <script src="data/Jardins_5.js"></script>
+        <script src="data/Atelierscuisine_6.js"></script>
+        <script src="data/Epiceries_7.js"></script>
+        <script src="data/Panierssolidairesetgroupementsdachats_8.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[38.61629159907417,-15.789633755650385],[52.43636527730936,25.19660726323863]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_NouvelleCaldonieregroupe_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_NouvelleCaldonieregroupe_0_0() {
+            return {
+                pane: 'pane_NouvelleCaldonieregroupe_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,198,198,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_NouvelleCaldonieregroupe_0');
+        map.getPane('pane_NouvelleCaldonieregroupe_0').style.zIndex = 400;
+        map.getPane('pane_NouvelleCaldonieregroupe_0').style['mix-blend-mode'] = 'normal';
+        var layer_NouvelleCaldonieregroupe_0 = new L.geoJson(json_NouvelleCaldonieregroupe_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_NouvelleCaldonieregroupe_0',
+            layerName: 'layer_NouvelleCaldonieregroupe_0',
+            pane: 'pane_NouvelleCaldonieregroupe_0',
+            onEachFeature: pop_NouvelleCaldonieregroupe_0,
+            style: style_NouvelleCaldonieregroupe_0_0,
+        });
+        bounds_group.addLayer(layer_NouvelleCaldonieregroupe_0);
+        map.addLayer(layer_NouvelleCaldonieregroupe_0);
+        function pop_areg2021_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['reg'] !== null ? autolinker.link(feature.properties['reg'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['libgeo'] !== null ? autolinker.link(feature.properties['libgeo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_areg2021_1_0(feature) {
+            switch(String(feature.properties['libgeo'])) {
+                default:
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,68,110,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Auvergne-Rhône-Alpes':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(89,113,219,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bourgogne-Franche-Comté':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(160,32,203,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bretagne':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(216,95,91,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Centre-Val de Loire':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(229,182,54,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Corse':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,198,198,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Grand-Est':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,93,236,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Guadeloupe':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,198,198,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Guyane':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,198,198,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Hauts-de-France':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Île-de-France':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(193,83,61,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'La Réunion':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,198,198,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Martinique':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,198,198,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Mayotte':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,198,198,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Normandie':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,152,208,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Nouvelle Aquitaine':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(137,210,236,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Occitanie':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(71,239,37,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Pays de la Loire':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,113,115,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Provence-Alpes-Côte d\'Azur':
+                    return {
+                pane: 'pane_areg2021_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,121,121,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_areg2021_1');
+        map.getPane('pane_areg2021_1').style.zIndex = 401;
+        map.getPane('pane_areg2021_1').style['mix-blend-mode'] = 'normal';
+        var layer_areg2021_1 = new L.geoJson(json_areg2021_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_areg2021_1',
+            layerName: 'layer_areg2021_1',
+            pane: 'pane_areg2021_1',
+            onEachFeature: pop_areg2021_1,
+            style: style_areg2021_1_0,
+        });
+        bounds_group.addLayer(layer_areg2021_1);
+        map.addLayer(layer_areg2021_1);
+        function pop_Delegations_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM_DELEG'] !== null ? autolinker.link(feature.properties['NOM_DELEG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['C_DELEG_21'] !== null ? autolinker.link(feature.properties['C_DELEG_21'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['C_Del_Num'] !== null ? autolinker.link(feature.properties['C_Del_Num'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISPOVER'] !== null ? autolinker.link(feature.properties['DISPOVER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Delegations_2_0() {
+            return {
+                pane: 'pane_Delegations_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Delegations_2');
+        map.getPane('pane_Delegations_2').style.zIndex = 402;
+        map.getPane('pane_Delegations_2').style['mix-blend-mode'] = 'normal';
+        var layer_Delegations_2 = new L.geoJson(json_Delegations_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Delegations_2',
+            layerName: 'layer_Delegations_2',
+            pane: 'pane_Delegations_2',
+            onEachFeature: pop_Delegations_2,
+            style: style_Delegations_2_0,
+        });
+        bounds_group.addLayer(layer_Delegations_2);
+        map.addLayer(layer_Delegations_2);
+        function pop_Autrespropositionsdaccslalimentation_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['x (long)'] !== null ? autolinker.link(feature.properties['x (long)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['y (lat)'] !== null ? autolinker.link(feature.properties['y (lat)'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nom</th>\
+                        <td>' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Délégation'] !== null ? autolinker.link(feature.properties['Délégation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Informations'] !== null ? autolinker.link(feature.properties['Informations'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Autrespropositionsdaccslalimentation_3_0() {
+            return {
+                pane: 'pane_Autrespropositionsdaccslalimentation_3',
+                radius: 4.8,
+                opacity: 1,
+                color: 'rgba(122,52,139,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(194,24,237,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Autrespropositionsdaccslalimentation_3');
+        map.getPane('pane_Autrespropositionsdaccslalimentation_3').style.zIndex = 403;
+        map.getPane('pane_Autrespropositionsdaccslalimentation_3').style['mix-blend-mode'] = 'normal';
+        var layer_Autrespropositionsdaccslalimentation_3 = new L.geoJson(json_Autrespropositionsdaccslalimentation_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Autrespropositionsdaccslalimentation_3',
+            layerName: 'layer_Autrespropositionsdaccslalimentation_3',
+            pane: 'pane_Autrespropositionsdaccslalimentation_3',
+            onEachFeature: pop_Autrespropositionsdaccslalimentation_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Autrespropositionsdaccslalimentation_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Autrespropositionsdaccslalimentation_3);
+        map.addLayer(layer_Autrespropositionsdaccslalimentation_3);
+        function pop_temp1_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+        }
+
+        function style_temp1_4_0() {
+            return {
+                pane: 'pane_temp1_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_temp1_4');
+        map.getPane('pane_temp1_4').style.zIndex = 404;
+        map.getPane('pane_temp1_4').style['mix-blend-mode'] = 'normal';
+        var layer_temp1_4 = new L.geoJson(json_temp1_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_temp1_4',
+            layerName: 'layer_temp1_4',
+            pane: 'pane_temp1_4',
+            onEachFeature: pop_temp1_4,
+            style: style_temp1_4_0,
+        });
+        bounds_group.addLayer(layer_temp1_4);
+        map.addLayer(layer_temp1_4);
+        function pop_Jardins_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>nom</strong><br />' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Délégations</strong><br />' + (feature.properties['Délégations'] !== null ? autolinker.link(feature.properties['Délégations'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Informations'] !== null ? autolinker.link(feature.properties['Informations'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Jardins_5_0() {
+            return {
+                pane: 'pane_Jardins_5',
+                radius: 4.8,
+                opacity: 1,
+                color: 'rgba(17,111,17,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,178,40,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Jardins_5');
+        map.getPane('pane_Jardins_5').style.zIndex = 405;
+        map.getPane('pane_Jardins_5').style['mix-blend-mode'] = 'normal';
+        var layer_Jardins_5 = new L.geoJson(json_Jardins_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Jardins_5',
+            layerName: 'layer_Jardins_5',
+            pane: 'pane_Jardins_5',
+            onEachFeature: pop_Jardins_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Jardins_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Jardins_5);
+        map.addLayer(layer_Jardins_5);
+        function pop_Atelierscuisine_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>nom</strong><br />' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Délégation</strong><br />' + (feature.properties['Délégation'] !== null ? autolinker.link(feature.properties['Délégation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Informations'] !== null ? autolinker.link(feature.properties['Informations'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Atelierscuisine_6_0() {
+            return {
+                pane: 'pane_Atelierscuisine_6',
+                radius: 4.8,
+                opacity: 1,
+                color: 'rgba(18,102,132,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(137,210,236,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Atelierscuisine_6');
+        map.getPane('pane_Atelierscuisine_6').style.zIndex = 406;
+        map.getPane('pane_Atelierscuisine_6').style['mix-blend-mode'] = 'normal';
+        var layer_Atelierscuisine_6 = new L.geoJson(json_Atelierscuisine_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Atelierscuisine_6',
+            layerName: 'layer_Atelierscuisine_6',
+            pane: 'pane_Atelierscuisine_6',
+            onEachFeature: pop_Atelierscuisine_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Atelierscuisine_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Atelierscuisine_6);
+        map.addLayer(layer_Atelierscuisine_6);
+        function pop_Epiceries_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Nom</strong><br />' + (feature.properties['Nom'] !== null ? autolinker.link(feature.properties['Nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Délégation</strong><br />' + (feature.properties['Délégation'] !== null ? autolinker.link(feature.properties['Délégation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Information'] !== null ? autolinker.link(feature.properties['Information'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Epiceries_7_0() {
+            return {
+                pane: 'pane_Epiceries_7',
+                radius: 4.8,
+                opacity: 1,
+                color: 'rgba(165,35,37,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(242,35,35,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Epiceries_7');
+        map.getPane('pane_Epiceries_7').style.zIndex = 407;
+        map.getPane('pane_Epiceries_7').style['mix-blend-mode'] = 'normal';
+        var layer_Epiceries_7 = new L.geoJson(json_Epiceries_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Epiceries_7',
+            layerName: 'layer_Epiceries_7',
+            pane: 'pane_Epiceries_7',
+            onEachFeature: pop_Epiceries_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Epiceries_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Epiceries_7);
+        map.addLayer(layer_Epiceries_7);
+        function pop_Panierssolidairesetgroupementsdachats_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>nom</strong><br />' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Délégation</strong><br />' + (feature.properties['Délégation'] !== null ? autolinker.link(feature.properties['Délégation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Informations</strong><br />' + (feature.properties['Informations'] !== null ? autolinker.link(feature.properties['Informations'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Panierssolidairesetgroupementsdachats_8_0() {
+            return {
+                pane: 'pane_Panierssolidairesetgroupementsdachats_8',
+                radius: 4.8,
+                opacity: 1,
+                color: 'rgba(199,158,158,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Panierssolidairesetgroupementsdachats_8');
+        map.getPane('pane_Panierssolidairesetgroupementsdachats_8').style.zIndex = 408;
+        map.getPane('pane_Panierssolidairesetgroupementsdachats_8').style['mix-blend-mode'] = 'normal';
+        var layer_Panierssolidairesetgroupementsdachats_8 = new L.geoJson(json_Panierssolidairesetgroupementsdachats_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Panierssolidairesetgroupementsdachats_8',
+            layerName: 'layer_Panierssolidairesetgroupementsdachats_8',
+            pane: 'pane_Panierssolidairesetgroupementsdachats_8',
+            onEachFeature: pop_Panierssolidairesetgroupementsdachats_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Panierssolidairesetgroupementsdachats_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Panierssolidairesetgroupementsdachats_8);
+        map.addLayer(layer_Panierssolidairesetgroupementsdachats_8);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        setBounds();
+        resetLabels([layer_Epiceries_7]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Epiceries_7]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Epiceries_7]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Epiceries_7]);
+        });
+        </script>
+    </body>
+</html>
